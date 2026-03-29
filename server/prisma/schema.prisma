@@ -1,0 +1,72 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String?
+  firstName    String?
+  lastName     String?
+  profileImage String?
+  trips        Trip[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  freeTripsUsed      Int      @default(0)
+  planType           String   @default("free")
+  stripeCustomerId   String?
+  subscriptionStatus String   @default("inactive")
+}
+
+model Trip {
+  id          String   @id @default(uuid())
+  title       String
+  destination String
+  startDate   DateTime
+  endDate     DateTime
+  budget      String
+  groupSize   String   @default("Solo")
+  travelStyle String   @default("Sightseeing")
+
+  isPublic  Boolean @default(false)
+  forkedFrom String?
+  forkCount  Int     @default(0)
+  likes      Int     @default(0)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  itinerary Json
+  places    Place[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Place {
+  id             String  @id @default(uuid())
+  name           String
+  address        String?
+  photoUrl       String?
+  rating         Float?
+  latitude       Float?
+  longitude      Float?
+  googlePlaceId  String?
+  ticketPricing  String?
+  description    String?
+
+  tripId String
+  trip   Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([tripId])
+}
