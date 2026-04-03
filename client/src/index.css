@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-sky-50: #F0F9FF;
+  --color-sky-100: #E0F2FE;
+  --color-sky-200: #BAE6FD;
+  --color-sky-400: #38BDF8;
+  --color-sky-500: #0EA5E9;
+  --color-sky-600: #0284C7;
+  --color-sky-700: #0369A1;
+
+  --color-ocean-50: #EFF6FF;
+  --color-ocean-100: #DBEAFE;
+  --color-ocean-300: #93C5FD;
+  --color-ocean-400: #60A5FA;
+  --color-ocean-500: #3B82F6;
+  --color-ocean-600: #2563EB;
+  --color-ocean-700: #1D4ED8;
+  --color-ocean-900: #1E3A5F;
+
+  --color-teal-400: #2DD4BF;
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0D9488;
+
+  --color-lime-300: #BEF264;
+  --color-lime-400: #A3E635;
+  --color-lime-500: #84CC16;
+  --color-lime-700: #4D7C0F;
+
+  --color-coral-400: #FB7185;
+  --color-coral-500: #F43F5E;
+  --color-coral-600: #E11D48;
+
+  --color-amber-400: #FBBF24;
+  --color-amber-500: #F59E0B;
+
+  --color-white: #FFFFFF;
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #64748B;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1E293B;
+  --color-gray-900: #0F172A;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-ai: #A3E635;
+
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.14);
+  --shadow-card: 0 2px 24px rgba(14,30,55,0.08);
+  --shadow-float: 0 20px 60px rgba(14,30,55,0.18);
+  --shadow-glass: 0 8px 32px rgba(31,38,135,0.12);
+  --shadow-ai: 0 0 24px rgba(163,230,53,0.30);
+  --shadow-blue: 0 8px 24px rgba(59,130,246,0.25);
+  --shadow-map: 0 20px 50px rgba(0,0,0,0.20);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+:root {
+  /* Shadcn internal mappings */
+  --background: var(--color-gray-50);
+  --foreground: var(--color-gray-900);
+  --primary: var(--color-ocean-600);
+  --primary-foreground: var(--color-white);
+  --border: var(--color-gray-200);
+  --input: var(--color-gray-200);
+  --ring: var(--color-ocean-400);
+  --muted: var(--color-gray-100);
+  --muted-foreground: var(--color-gray-500);
+  --destructive: var(--color-danger);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-gray-900);
+  --card: var(--color-white);
+  --card-foreground: var(--color-gray-900);
+
+  /* Radius from design.md */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-3xl: 36px;
+  --radius-full: 9999px;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(180deg, #1E3A5F 0%, #0F172A 100%);
+  --gradient-sky: linear-gradient(180deg, #E0F2FE 0%, #F0F9FF 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.60) 100%);
+  --gradient-card-overlay: linear-gradient(180deg, transparent 40%, rgba(14,30,55,0.80) 100%);
+  --gradient-sunset: linear-gradient(135deg, #FB7185 0%, #F59E0B 100%);
+  --gradient-ai: linear-gradient(135deg, #BEF264 0%, #2DD4BF 100%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-hero { background: var(--gradient-hero); }
+  .bg-gradient-sky { background: var(--gradient-sky); }
+  .bg-gradient-glass { background: var(--gradient-glass); }
+  .bg-gradient-card-overlay { background: var(--gradient-card-overlay); }
+  .bg-gradient-sunset { background: var(--gradient-sunset); }
+  .bg-gradient-ai { background: var(--gradient-ai); }
+
+  .text-gradient-ai {
+    background: var(--gradient-ai);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    box-shadow: var(--shadow-glass);
+    border-radius: var(--radius-2xl);
+  }
+
+  .glass-dark {
+    background: rgba(14, 30, 55, 0.75);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius-xl);
+  }
+
+  .glass-ai {
+    background: rgba(240, 249, 255, 0.90);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(56,189,248,0.20);
+    box-shadow: var(--shadow-glass), 0 0 0 1px rgba(163,230,53,0.15);
+    border-radius: var(--radius-2xl);
+  }
+}
+
+@keyframes ai-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40%           { transform: translateY(-6px); opacity: 1; }
+}
+
+.animate-ai-bounce {
+  animation: ai-bounce 1.2s infinite ease-in-out;
+}
+
+.animation-delay-200 {  animation-delay: 200ms; }
+.animation-delay-400 {  animation-delay: 400ms; }
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #E2E8F0 25%, #F8FAFC 50%, #E2E8F0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 8px;
+}
