@@ -31,7 +31,7 @@ const CommunityPage = () => {
 
     const fetchCommunityTrips = async () => {
         try {
-            const res = await api.get("/trips/community?limit=50");
+            const res = await api.get("/api/trips/community?limit=50");
             setTrips(res.data);
         } catch (error) {
             console.error("Failed to fetch community trips:", error);
@@ -44,7 +44,7 @@ const CommunityPage = () => {
         e.stopPropagation();
         if (!token) { navigate("/login"); return; }
         try {
-            const res = await api.post(`/trips/fork/${tripId}`);
+            const res = await api.post(`/api/trips/fork/${tripId}`);
             navigate(`/trip/${res.data.id}`);
         } catch (error) {
             console.error("Fork failed:", error);

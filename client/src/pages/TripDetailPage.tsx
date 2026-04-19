@@ -31,7 +31,7 @@ const TripDetailPage = () => {
 
     const fetchTrip = async () => {
         try {
-            const res = await api.get(`/trips/${id}`);
+            const res = await api.get(`/api/trips/${id}`);
             setTrip(res.data);
         } catch (error) {
             console.error("Failed to fetch trip:", error);
@@ -43,7 +43,7 @@ const TripDetailPage = () => {
     const handleDownloadPDF = async () => {
         setDownloading(true);
         try {
-            const res = await api.get(`/trips/${id}/pdf`, { responseType: "blob" });
+            const res = await api.get(`/api/trips/${id}/pdf`, { responseType: "blob" });
             const url = window.URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement("a");
             link.href = url;
@@ -62,7 +62,7 @@ const TripDetailPage = () => {
     const handleOptimize = async () => {
         setOptimizing(true);
         try {
-            const res = await api.post(`/trips/${id}/optimize`);
+            const res = await api.post(`/api/trips/${id}/optimize`);
             setTrip(res.data);
         } catch (error) {
             console.error("Optimization failed:", error);
@@ -73,7 +73,7 @@ const TripDetailPage = () => {
 
     const handleTogglePublic = async () => {
         try {
-            const res = await api.patch(`/trips/${id}/publish`);
+            const res = await api.patch(`/api/trips/${id}/publish`);
             setTrip(res.data);
         } catch (error) {
             console.error("Toggle public failed:", error);
@@ -83,7 +83,7 @@ const TripDetailPage = () => {
     const handleFork = async () => {
         if (!token) { navigate("/login"); return; }
         try {
-            const res = await api.post(`/trips/fork/${id}`);
+            const res = await api.post(`/api/trips/fork/${id}`);
             navigate(`/trip/${res.data.id}`);
         } catch (error) {
             console.error("Fork failed:", error);

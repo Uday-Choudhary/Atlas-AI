@@ -16,7 +16,7 @@ const PricingPage = () => {
 
         setLoading(true);
         try {
-            const { data } = await api.post("/stripe/checkout");
+            const { data } = await api.post("/api/stripe/checkout");
             if (data.url) {
                 window.location.href = data.url;
             }

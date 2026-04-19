@@ -77,7 +77,7 @@ const MyTripsPage = () => {
 
     const fetchTrips = async () => {
         try {
-            const res = await api.get("/trips/user");
+            const res = await api.get("/api/trips/user");
             setTrips(res.data);
         } catch (err) {
             console.error(err);
@@ -91,7 +91,7 @@ const MyTripsPage = () => {
         setMenuOpen(null);
         if (!confirm("Delete this trip?")) return;
         try {
-            await api.delete(`/trips/${id}`);
+            await api.delete(`/api/trips/${id}`);
             setTrips(p => p.filter(t => t.id !== id));
         } catch (err) { console.error(err); }
     };
@@ -100,7 +100,7 @@ const MyTripsPage = () => {
         e.stopPropagation();
         setMenuOpen(null);
         try {
-            const res = await api.patch(`/trips/${id}/publish`);
+            const res = await api.patch(`/api/trips/${id}/publish`);
             setTrips(p => p.map(t => t.id === id ? { ...t, isPublic: res.data.isPublic } : t));
         } catch (err) { console.error(err); }
     };

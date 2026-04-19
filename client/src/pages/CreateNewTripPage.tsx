@@ -31,7 +31,7 @@ const CreateNewTripPage = () => {
             const endDate = new Date();
             endDate.setDate(endDate.getDate() + duration);
 
-            const res = await api.post("/trips/save", {
+            const res = await api.post("/api/trips/save", {
                 tripPlan: tripData,
                 startDate: startDate.toISOString(),
                 endDate: endDate.toISOString(),
