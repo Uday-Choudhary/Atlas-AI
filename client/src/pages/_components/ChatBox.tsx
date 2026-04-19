@@ -80,8 +80,8 @@ const ChatBox = ({ onTripGenerated }: ChatBoxProps) => {
                 status === 402
                     ? axiosError.response?.data?.message || "You have used your 2 free AI trips. Upgrade to keep planning."
                     : status === 429
-                    ? axiosError.response?.data?.error || "AI quota exhausted. Wait a minute."
-                    : "Sorry, something went wrong. Please try again.";
+                        ? axiosError.response?.data?.error || "AI quota exhausted. Wait a minute."
+                        : "Sorry, something went wrong. Please try again.";
 
             setMessages((prev) => [
                 ...prev,
@@ -123,7 +123,7 @@ const ChatBox = ({ onTripGenerated }: ChatBoxProps) => {
 
     return (
         <div className="h-[85vh] flex flex-col glass-ai overflow-hidden shadow-glass relative">
-            
+
             {/* Header */}
             <div className="px-6 py-4 border-b border-[var(--color-sky-200)] flex items-center justify-between bg-white/50 backdrop-blur-md">
                 <div className="flex items-center gap-2">
@@ -173,11 +173,10 @@ const ChatBox = ({ onTripGenerated }: ChatBoxProps) => {
                             )}
                             <div className={`flex flex-col max-w-[85%] ${msg.role === "user" ? "items-end" : "items-start"}`}>
                                 <div
-                                    className={`px-[16px] py-[12px] text-[15px] font-body leading-relaxed max-w-full overflow-hidden ${
-                                        msg.role === "user"
+                                    className={`px-[16px] py-[12px] text-[15px] font-body leading-relaxed max-w-full overflow-hidden ${msg.role === "user"
                                             ? "bg-[var(--color-ocean-600)] text-white rounded-2xl rounded-tr-sm shadow-sm"
                                             : "bg-[var(--color-sky-50)] text-[var(--color-ocean-900)] border border-[var(--color-sky-100)] rounded-2xl rounded-tl-sm shadow-sm"
-                                    }`}
+                                        }`}
                                 >
                                     {msg.content}
                                 </div>
