@@ -34,9 +34,7 @@
     "googleapis": "^171.4.0",
     "jsonwebtoken": "^9.0.3",
     "pdfkit": "^0.18.0",
-    "pg": "^8.18.0"
-  },
-  "devDependencies": {
+    "pg": "^8.18.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
@@ -49,3 +47,4 @@
     "typescript": "^5.9.3"
   }
 }
+
