@@ -10,7 +10,7 @@ export class TripApiService {
      * Save a new trip from AI chat output.
      */
     async saveFromChat(tripPlan: any, startDate: string, endDate: string) {
-        const res = await api.post("/trips/save", { tripPlan, startDate, endDate });
+        const res = await api.post("/api/trips/save", { tripPlan, startDate, endDate });
         return res.data;
     }
 
@@ -18,7 +18,7 @@ export class TripApiService {
      * Fetch all trips for the current authenticated user.
      */
     async getUserTrips() {
-        const res = await api.get("/trips/user");
+        const res = await api.get("/api/trips/user");
         return res.data;
     }
 
@@ -26,7 +26,7 @@ export class TripApiService {
      * Fetch community (public) trips.
      */
     async getCommunityTrips(limit: number = 50) {
-        const res = await api.get(`/trips/community?limit=${limit}`);
+        const res = await api.get(`/api/trips/community?limit=${limit}`);
         return res.data;
     }
 
@@ -34,7 +34,7 @@ export class TripApiService {
      * Get a single trip by ID.
      */
     async getTripById(id: string) {
-        const res = await api.get(`/trips/${id}`);
+        const res = await api.get(`/api/trips/${id}`);
         return res.data;
     }
 
@@ -42,7 +42,7 @@ export class TripApiService {
      * Toggle public/private visibility.
      */
     async togglePublic(tripId: string) {
-        const res = await api.patch(`/trips/${tripId}/publish`);
+        const res = await api.patch(`/api/trips/${tripId}/publish`);
         return res.data;
     }
 
@@ -50,7 +50,7 @@ export class TripApiService {
      * Optimize route for a trip.
      */
     async optimizeRoute(tripId: string) {
-        const res = await api.post(`/trips/${tripId}/optimize`);
+        const res = await api.post(`/api/trips/${tripId}/optimize`);
         return res.data;
     }
 
@@ -58,7 +58,7 @@ export class TripApiService {
      * Download trip PDF as a Blob.
      */
     async downloadPDF(tripId: string): Promise<Blob> {
-        const res = await api.get(`/trips/${tripId}/pdf`, { responseType: "blob" });
+        const res = await api.get(`/api/trips/${tripId}/pdf`, { responseType: "blob" });
         return res.data;
     }
 
@@ -66,7 +66,7 @@ export class TripApiService {
      * Fork a community trip to the user's account.
      */
     async forkTrip(tripId: string) {
-        const res = await api.post(`/trips/fork/${tripId}`);
+        const res = await api.post(`/api/trips/fork/${tripId}`);
         return res.data;
     }
 
@@ -74,7 +74,7 @@ export class TripApiService {
      * Delete a trip.
      */
     async deleteTrip(tripId: string) {
-        const res = await api.delete(`/trips/${tripId}`);
+        const res = await api.delete(`/api/trips/${tripId}`);
         return res.data;
     }
 }
@@ -87,7 +87,7 @@ export class CalendarApiService {
      * Get the Google OAuth2 authorization URL.
      */
     async getAuthUrl(): Promise<string> {
-        const res = await api.get("/calendar/auth-url");
+        const res = await api.get("/api/calendar/auth-url");
         return res.data.url;
     }
 
@@ -95,7 +95,7 @@ export class CalendarApiService {
      * Sync a trip's events to the user's Google Calendar.
      */
     async syncTrip(tripId: string, accessToken: string, refreshToken?: string) {
-        const res = await api.post(`/calendar/sync/${tripId}`, {
+        const res = await api.post(`/api/calendar/sync/${tripId}`, {
             accessToken,
             refreshToken,
         });
