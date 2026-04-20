@@ -1,4 +1,4 @@
-# 🌍 Atlas AI — Intelligent Travel Operating System
+# Atlas AI — Intelligent Travel Operating System
 
 <div align="center">
   <img src="https://img.shields.io/badge/Status-Live-success?style=for-the-badge&logoColor=white" alt="Status" />
@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-  <strong>🌟 Experience the live application here: <a href="https://atlas-ai-client.vercel.app/">https://atlas-ai-client.vercel.app/</a> 🌟</strong>
+  <strong>Experience the live application here: <a href="https://atlas-ai-client.vercel.app/">https://atlas-ai-client.vercel.app/</a></strong>
 </p>
 
 ---
@@ -18,24 +18,24 @@
 
 Whether you're planning a quick weekend getaway or a month-long backpacking trip, Atlas AI generates a fully fleshed-out, highly optimized itinerary—taking the hassle out of travel planning.
 
-## ✨ Key Features
+## Key Features
 
-- 🧠 **AI-Powered Trip Planning:** Utilizes Google's Gemini Conversational AI to generate highly contextual, day-by-day itineraries dynamically parsed into JSON.
-- 📍 **Place Enrichment:** Integrated with Geoapify and OpenTripMap to fetch rich geospatial data, photos, travel ratings, and exact geo-coordinates.
-- 🗺️ **3D Interactive Maps:** Experience an immersive journey visualization powered by Mapbox GL JS globe views, allowing you to visually explore your entire trip before you go.
-- ⚡ **Route Optimization:** Implements a Traveling Salesperson Problem (TSP) solver to intelligently reorder daily activities, ensuring the most efficient and practical travel routes.
-- 📅 **Calendar Syncing:** Seamless OAuth2 integration that allows you to push your optimized travel itinerary directly to your Google Calendar.
-- 📄 **PDF Itinerary Export:** Features robust server-side rendering to generate beautiful, structured PDF travel vouchers for offline use during your travels.
-- 🤝 **Community Feed:** Browse, discover, and "fork" public trips curated by other travelers from the Atlas AI community.
+- **AI-Powered Trip Planning:** Utilizes Google Gemini Conversational AI to generate highly contextual, day-by-day itineraries dynamically parsed into JSON.
+- **Place Enrichment:** Integrated with Geoapify and OpenTripMap to fetch rich geospatial data, photos, travel ratings, and exact geo-coordinates.
+- **3D Interactive Maps:** Experience an immersive journey visualization powered by Mapbox GL JS globe views, allowing you to visually explore your entire trip before you go.
+- **Route Optimization:** Implements a Traveling Salesperson Problem (TSP) solver to intelligently reorder daily activities, ensuring the most efficient and practical travel routes.
+- **Calendar Syncing:** Seamless OAuth2 integration that allows you to push your optimized travel itinerary directly to your Google Calendar.
+- **PDF Itinerary Export:** Features robust server-side rendering to generate beautiful, structured PDF travel vouchers for offline use during your travels.
+- **Community Feed:** Browse, discover, and "fork" public trips curated by other travelers from the Atlas AI community.
 
-## 🏗️ Strict OOP Backend Architecture
+## Strict OOP Backend Architecture
 
 The backend codebase is meticulously designed to reflect **proper OOP principles (encapsulation, abstraction, modularity)**. It explicitly implements a **clear separation of concerns** across three decoupled layers:
 - **`controllers/`**: Static classes (`AuthController`, `TripController`, etc.) encapsulating all HTTP routing and request validation logic.
 - **`services/`**: Abstracted business logic (e.g., `AIService`, `StripeService`, `CalendarService`) cleanly isolated from network protocols.
 - **`repositories/`**: Database interaction mapping, ensuring strict data access separation.
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Layer       | Technologies & Frameworks                                 |
 |-------------|-----------------------------------------------------------|
@@ -46,7 +46,7 @@ The backend codebase is meticulously designed to reflect **proper OOP principles
 | **Auth**    | Stateless JWT Authorization                               |
 | **Deployment** | Vercel (Frontend), Hosted Node (Backend), Neon (DB)    |
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow the instructions below to spin up your own local version of Atlas AI.
 
@@ -129,7 +129,7 @@ Email: test@atlas.ai
 Password: test1234
 ```
 
-## 🏗️ Project Structure
+## Project Structure
 
 This project is built using an NPM Workspaces monorepo structure:
 
@@ -137,7 +137,7 @@ This project is built using an NPM Workspaces monorepo structure:
 - `/server` - The Express backend serving API endpoints strictly utilizing proper OOP principles across `controllers/`, `services/`, and `repositories/`.
 - `/` (Root directory) - Houses all mandatory project documentation including `idea.md`, `useCaseDiagram.md`, `sequenceDiagram.md`, `classDiagram.md`, and `ErDiagram.md`.
 
-## 🔗 Live Application
+## Live Application
 
 The client application is live and continuously deployed! 
 Check it out here: **[Atlas AI — Live Preview](https://atlas-ai-client.vercel.app/)**
