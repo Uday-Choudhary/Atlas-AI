@@ -1,23 +1,29 @@
-import { UserRepository } from "../repositories/UserRepository";
+import type { IUserRepository } from "../repositories/UserRepository";
 import bcrypt from "bcryptjs";
 
-export class UserService {
-    /**
-     * Registers a new user with email and password
-     */
-    static async registerUser(data: { email: string; password?: string; firstName?: string; lastName?: string }) {
-        const existingUser = await UserRepository.getUserByEmail(data.email);
+export interface IUserService {
+    registerUser(data: { email: string; password?: string; firstName?: string; lastName?: string }): Promise<{ id: string; email: string }>;
+    authenticateUser(email: string, password: string): Promise<{ id: string; email: string; name: string }>;
+}
 
-        if (existingUser) {
-            throw new Error("User already exists with this email.");
-        }
+/**
+ * UserService — Orchestrates user authentication and registration.
+ *
+ * SOLID Principles:
+ * - Single Responsibility: handles only user auth/registration workflows
+ * - Dependency Inversion: depends on IUserRepository abstraction, not concrete Prisma calls
+ * - Interface Segregation: IUserService exposes only user-level operations
+ */
+export class UserService implements IUserService {
+    constructor(private readonly userRepo: IUserRepository) {}
 
-        let hashedPassword = undefined;
-        if (data.password) {
-            hashedPassword = await bcrypt.hash(data.password, 10);
-        }
+    async registerUser(data: { email: string; password?: string; firstName?: string; lastName?: string }) {
+        const existingUser = await this.userRepo.getUserByEmail(data.email);
+        if (existingUser) throw new Error("User already exists with this email.");
 
-        return UserRepository.createUser({
+        const hashedPassword = data.password ? await bcrypt.hash(data.password, 10) : undefined;
+
+        return this.userRepo.createUser({
             email: data.email,
             password: hashedPassword,
             firstName: data.firstName,
@@ -25,21 +31,12 @@ export class UserService {
         });
     }
 
-    /**
-     * Authenticates a user by email and password
-     * Returns user object if valid, throws error if invalid.
-     */
-    static async authenticateUser(email: string, passwordString: string) {
-        const user = await UserRepository.getUserByEmail(email);
-
-        if (!user || !user.password) {
-            throw new Error("Invalid email or password.");
-        }
+    async authenticateUser(email: string, passwordString: string) {
+        const user = await this.userRepo.getUserByEmail(email);
+        if (!user || !user.password) throw new Error("Invalid email or password.");
 
         const isMatch = await bcrypt.compare(passwordString, user.password);
-        if (!isMatch) {
-            throw new Error("Invalid email or password.");
-        }
+        if (!isMatch) throw new Error("Invalid email or password.");
 
         return {
             id: user.id,
