@@ -1,6 +1,8 @@
 import Stripe from "stripe";
 import { UserRepository } from "../repositories/UserRepository";
 
+const userRepository = new UserRepository();
+
 // Make sure to add this to .env: STRIPE_SECRET_KEY = sk_test_...
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
     apiVersion: "2024-06-20" as any, // Using latest compatible version
@@ -11,7 +13,7 @@ export class StripeService {
      * Create or retrieve a Stripe customer
      */
     static async getOrCreateCustomer(userId: string, email: string): Promise<string> {
-        const user = await UserRepository.getUserById(userId);
+        const user = await userRepository.getUserById(userId);
         if (!user) throw new Error("User not found");
 
         if (user.stripeCustomerId) {
@@ -23,7 +25,7 @@ export class StripeService {
             metadata: { userId },
         });
 
-        await UserRepository.updateUser(userId, { stripeCustomerId: customer.id });
+        await userRepository.updateUser(userId, { stripeCustomerId: customer.id });
         return customer.id;
     }
 
