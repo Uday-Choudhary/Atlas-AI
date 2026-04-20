@@ -28,6 +28,13 @@ Whether you're planning a quick weekend getaway or a month-long backpacking trip
 - 📄 **PDF Itinerary Export:** Features robust server-side rendering to generate beautiful, structured PDF travel vouchers for offline use during your travels.
 - 🤝 **Community Feed:** Browse, discover, and "fork" public trips curated by other travelers from the Atlas AI community.
 
+## 🏗️ Strict OOP Backend Architecture
+
+The backend codebase is meticulously designed to reflect **proper OOP principles (encapsulation, abstraction, modularity)**. It explicitly implements a **clear separation of concerns** across three decoupled layers:
+- **`controllers/`**: Static classes (`AuthController`, `TripController`, etc.) encapsulating all HTTP routing and request validation logic.
+- **`services/`**: Abstracted business logic (e.g., `AIService`, `StripeService`, `CalendarService`) cleanly isolated from network protocols.
+- **`repositories/`**: Database interaction mapping, ensuring strict data access separation.
+
 ## 🛠️ Technology Stack
 
 | Layer       | Technologies & Frameworks                                 |
@@ -127,8 +134,8 @@ Password: test1234
 This project is built using an NPM Workspaces monorepo structure:
 
 - `/client` - The Vite-powered React front-end.
-- `/server` - The Express backend serving API endpoints and database communication.
-- `/diagrams` - Supplementary documentation, ER diagrams, and system architecture blueprints.
+- `/server` - The Express backend serving API endpoints strictly utilizing proper OOP principles across `controllers/`, `services/`, and `repositories/`.
+- `/` (Root directory) - Houses all mandatory project documentation including `idea.md`, `useCaseDiagram.md`, `sequenceDiagram.md`, `classDiagram.md`, and `ErDiagram.md`.
 
 ## 🔗 Live Application
 
